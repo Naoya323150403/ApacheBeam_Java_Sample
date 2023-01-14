@@ -1,0 +1,52 @@
+package section1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.transforms.Create;
+import org.apache.beam.sdk.transforms.MapElements;
+import org.apache.beam.sdk.values.PCollection;
+import org.apache.beam.sdk.values.TypeDescriptors;
+import org.apache.beam.sdk.options.PipelineOptions;
+import org.apache.beam.sdk.options.PipelineOptionsFactory;
+
+
+public class InmemoryExample {
+
+	public static void main(String[] args) {
+
+		Pipeline pipeline = Pipeline.create();
+
+
+		PCollection<CustomerEntity> pList = pipeline.apply(Create.of(getCustomer()));
+
+
+
+		pList.apply(TextIO.write().to("D:\\ApacheBeam\\Java\\section1\\output\\cutomer.csv"));
+
+		PCollection<String>pStrList =  pList.apply(
+				MapElements.into(TypeDescriptors.strings())
+				.via((CustomerEntity cust -> cust.getName())));
+
+
+		pipeline.run();
+
+
+	}
+
+
+	static List<CustomerEntity> getCustomer(){
+
+		CustomerEntity c1 = new CustomerEntity("1001", "john");
+		CustomerEntity c2 = new CustomerEntity("1002", "Ken");
+
+		List<CustomerEntity> list = new ArrayList<CustomerEntity>();
+		list.add(c1);
+		list.add(c2);
+
+		return list;
+	}
+
+}

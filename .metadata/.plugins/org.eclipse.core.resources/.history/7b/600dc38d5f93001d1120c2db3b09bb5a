@@ -1,0 +1,17 @@
+package section1;
+
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.TextIO;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
+public class LocalFileExample {
+	public static void main(String[] args) {
+
+		Pipeline pipeline = Pipeline.create();
+
+		pipeline.apply(TextIO.read().from("D:\\ApacheBeam\\Java\\section1\\input\\input.csv"));
+
+	}
+
+}

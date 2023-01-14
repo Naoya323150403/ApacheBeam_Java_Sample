@@ -1,0 +1,25 @@
+package section1;
+
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.apache.beam.sdk.values.PCollection;
+
+
+public class LocalFileExample {
+	public static void main(String[] args) {
+
+		Myoprions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(Myoprions.class);
+
+		Pipeline pipeline = Pipeline.create(options);
+
+		PCollection<String> output = pipeline.apply(TextIO.read().from("D:\\ApacheBeam\\Java\\section1\\input\\input.csv"));
+
+		output.apply(TextIO.write().to("D:\\ApacheBeam\\Java\\section1\\output\\output.csv").withNumShards(1).withSuffix(".csv"));
+
+		pipeline.run();
+
+		System.out.println("Fin...");
+	}
+
+}

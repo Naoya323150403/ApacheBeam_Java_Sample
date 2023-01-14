@@ -1,0 +1,35 @@
+package section1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.transforms.Create;
+import org.apache.beam.sdk.values.PCollection;
+
+
+public class InmemoryExample {
+
+	public static void main(String[] args) {
+
+		Pipeline pipeline = Pipeline.create();
+
+		PCollection<CustomerEntity> pList = pipeline.apply(Create.of(getCustomer()));
+
+
+	}
+
+
+	static List<CustomerEntity> getCustomer(){
+
+		CustomerEntity c1 = new CustomerEntity("1001", "john");
+		CustomerEntity c2 = new CustomerEntity("1002", "Ken");
+
+		List<CustomerEntity> list = new ArrayList<CustomerEntity>();
+		list.add(c1);
+		list.add(c2);
+
+		return list;
+	}
+
+}

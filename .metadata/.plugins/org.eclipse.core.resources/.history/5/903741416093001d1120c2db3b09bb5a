@@ -1,0 +1,15 @@
+package section1;
+
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.TextIO;
+
+public class LocalFileExample {
+	public static void main(String[] args) {
+
+		Pipeline pipeline = Pipeline.create();
+
+		org.apache.beam.sdk.values.PCollection<String> output = pipeline.apply(TextIO.read().from("D:\\ApacheBeam\\Java\\section1\\input\\input.csv"));
+
+	}
+
+}

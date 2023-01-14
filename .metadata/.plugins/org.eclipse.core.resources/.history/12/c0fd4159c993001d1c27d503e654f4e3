@@ -1,0 +1,17 @@
+package section1;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+public class InmemoryExample {
+
+	public static void main(String[] args) {
+
+	}
+
+
+	static List<CustomerEntity> getCustomer(){
+
+		return null;
+	}
+
+}
